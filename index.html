@@ -158,7 +158,7 @@
       <b>Objects</b>
       <br />
       <span class="methods"><a href="#keys">keys</a>, <a href="#values">values</a>,
-      <a href="#functions">functions</a>, <a href="#extend">extend</a>, <a href="#clone">clone</a>, <a href="#tap">tap</a>,
+      <a href="#functions">functions</a>, <a href="#extend">extend</a>, <a href="#clone">clone</a>, <a href="#deepClone">deepClone</a>, <a href="#tap">tap</a>,
       <a href="#isEqual">isEqual</a>, <a href="#isEmpty">isEmpty</a>, <a href="#isElement">isElement</a>,
       <a href="#isArray">isArray</a>, <a href="#isArguments">isArguments</a>, <a href="#isFunction">isFunction</a>, <a href="#isString">isString</a>,
       <a href="#isNumber">isNumber</a>, <a href="#isBoolean">isBoolean</a>, <a href="#isDate">isDate</a>, <a href="#isRegExp">isRegExp</a>
@@ -782,6 +782,17 @@ _.extend({name : 'moe'}, {age : 50});
       <pre>
 _.clone({name : 'moe'});
 =&gt; {name : 'moe'};
+</pre>
+
+      <p id="deepClone">
+        <b class="header">deepClone</b><code>_.deepClone(object)</code>
+        <br />
+        Create a deep-copied clone of the <b>object</b>. Any nested objects
+        or arrays will be cloned recursively.
+      </p>
+      <pre>
+_.clone({name : 'moe', pet: { species: "dahut", name: "levro" } });
+=&gt; {name : 'moe', pet: { species: "dahut", name: "levro" } };
 </pre>
 
       <p id="tap">

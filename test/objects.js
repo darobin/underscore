@@ -12,7 +12,7 @@ $(document).ready(function() {
 
   test("objects: functions", function() {
     var expected = ["all", "any", "bind", "bindAll", "breakLoop", "clone", "compact",
-    "compose","defer", "delay", "detect", "each", "every", "extend", "filter", "first",
+    "compose", "deepClone", "defer", "delay", "detect", "each", "every", "extend", "filter", "first",
     "flatten", "foldl", "foldr", "forEach", "functions", "head", "identity", "include",
     "indexOf", "inject", "intersect", "invoke", "isArguments", "isArray", "isBoolean", "isDate", "isElement", "isEmpty", "isEqual",
     "isFunction", "isNaN", "isNull", "isNumber", "isRegExp", "isString", "isUndefined", "keys", "last", "lastIndexOf", "map", "max",
@@ -45,6 +45,21 @@ $(document).ready(function() {
 
     clone.lucky.push(101);
     equals(_.last(moe.lucky), 101, 'changes to deep attributes are shared with the original');
+  });
+
+  test("objects: deepClone", function() {
+    var moe = {name : 'moe', lucky : [13, 27, 34], pet: { species: "dahut", name: "levro" }, age: 23 };
+    var clone = _.deepClone(moe);
+    equals(clone.name, 'moe', 'the clone as the attributes of the original');
+    equals(clone.age, 23, 'the clone as the attributes of the original');
+
+    clone.name = 'curly';
+    ok(clone.name == 'curly' && moe.name == 'moe', 'clones can change shallow attributes without affecting the original');
+
+    clone.lucky.push(101);
+    ok(_.last(moe.lucky) != 101, 'changes to deep attributes do not affect the original');
+    clone.pet.name = "dextro";
+    ok(moe.pet.name != "dextro", 'changes to deep attributes do not affect the original');
   });
 
   test("objects: isEqual", function() {

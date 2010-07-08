@@ -456,6 +456,19 @@
     return _.extend({}, obj);
   };
 
+  // Create a deep-cloned duplicate of an object.
+  _.deepClone = function(obj) {
+    var clone = _.clone(obj);
+    for (var k in clone) {
+        var v = clone[k];
+        if (!(_.isFunction(v) || _.isString(v) || _.isNumber(v) || _.isBoolean(v) || 
+              _.isNaN(v) || _.isUndefined(v) || _.isNull(v))) {
+            clone[k] = _.deepClone(obj[k]);
+        }
+    }
+    return clone;
+  };
+
   // Invokes interceptor with the obj, and then returns obj.
   // The primary purpose of this method is to "tap into" a method chain, in order to perform operations on intermediate results within the chain.
   _.tap = function(obj, interceptor) {
